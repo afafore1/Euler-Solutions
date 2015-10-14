@@ -33,15 +33,16 @@ public class Euler10 {
 			}
 		}
 
-		for(int i = 3; i < n; i+=2){ //only check for odd
+		for(int i = 3; i <= Math.sqrt(n); i+=2){ //only check for odd, cos we set odds to prime
 			if(isPrime[i]) {
-				for(int j = i*i; j < n; j+=i){
+				for(int j = i*i; j < n; j+=i){ // mark all multiples of odd to false
 					isPrime[j] = false;
 				}
 			}
 		}
-		for(int i = 2; i <= n; i++){
+		for(int i = 2; i < n; i++){
 			if(isPrime[i]){
+				//System.out.println(i);
 				nSum+= i;
 			}
 		}
