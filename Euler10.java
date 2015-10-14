@@ -23,12 +23,13 @@ public class Euler10 {
 		System.out.println(sum);
 
 		long nSum = 0;
-		boolean [] isPrime = new boolean[(n + 1)];
-		isPrime[2] = true;
-		for(int i = 3; i < n; i+=2){ // Assume every odd number is prime
-			isPrime[i] = true;
-			if(i % 2 == 0 && i != 2){
+		boolean [] isPrime = new boolean[(n + 1)];		
+		for(int i = 2; i < n; i++){ 
+			 // Assume every number is prime except even numbers
+			if(i % 2 == 0 && i != 2){ 
 				isPrime[i] = false;
+			}else{
+				isPrime[i] = true;
 			}
 		}
 
