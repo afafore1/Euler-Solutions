@@ -1,40 +1,51 @@
-package Euler;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 public class Euler10 {
+	public static boolean isPrime(long i){
+		if(i != 2 && i % 2 == 0) return false; // even is not prime except 2
+
+		for(int x = 3; x <= Math.sqrt(i); x+=2){
+			if(i % x == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		int n = 2000000;
-		int limit =(int) Math.sqrt(n);
-		int count = 0;
-		long startTime = System.currentTimeMillis();
-		boolean [] isPrime = new boolean[(n + 1)];
-		for(int i = 2; i <= n; i++){ // Every number is prime
-			isPrime[i] = true;
-		}
-		for(int i = 3; i < n; i+=2){ 
-			isPrime[i] = true;
-					for(int j = i*i; j < n; j+=i){
-						isPrime[j] = false;
-					}
-			}
 		long sum = 0;
-		for(int i = 2; i <= n; i++){
-			if(isPrime[i]){
-				//System.out.println(i);
-				sum+= i;
+		for(int i = 2; i < n; i++){
+			if(isPrime(i)){
+				sum+=i;
 			}
 		}
 		System.out.println(sum);
-		long endTime = System.currentTimeMillis();
-		NumberFormat formatter = new DecimalFormat("#0.00000");
-		System.out.print("\nExecution time is " + formatter.format((endTime - startTime) / 1000d) + " seconds\n");
 
+		long nSum = 0;
+		boolean [] isPrime = new boolean[(n + 1)];
+		isPrime[2] = true;
+		for(int i = 3; i < n; i+=2){ // Assume every odd number is prime
+			isPrime[i] = true;
+			if(i % 2 == 0 && i != 2){
+				isPrime[i] = false;
+			}
+		}
+
+		for(int i = 3; i < n; i+=2){ //only check for odd
+			if(isPrime[i]) {
+				for(int j = i*i; j < n; j+=i){
+					isPrime[j] = false;
+				}
+			}
+		}
+		for(int i = 2; i <= n; i++){
+			if(isPrime[i]){
+				nSum+= i;
+			}
+		}
+		System.out.println(nSum);
 
 	}
-
-
 
 }
