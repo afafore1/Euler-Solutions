@@ -22,14 +22,6 @@ public class Euler50 {
 		}
 		for(int i = 2; i*i< n; i++){
 			if(isPrime[i]){
-//				if(i != 2 && i != 3 && i != 5){
-//					sum+=i;
-//					if(isaPrime(sum)){
-//						if(sum < 2000000) {
-//							maxP = sum;
-//						}
-//					}
-//				}
 				for(int j = i * i; j <= n; j+=i){
 					isPrime[j] = false;
 				}
